@@ -17,9 +17,7 @@ cout << *pi;
 //float magnitude();
 //IVec& normalise();
 cout << "Testing normalise and magnitude" << endl;
-Vec2D normalised = *pi;
-cout << normalised;
-normalised = normalised.normalise();
+Vec2D normalised(pi->normalise());
 cout << normalised;
 cout << "Length of normlised is " << normalised.magnitude() << endl;
 
@@ -28,12 +26,9 @@ cout << "Finding nemo" << endl;
 cout << normalised.normal();
 //float dot(IVec& v);
 cout << "Finding dot product" << endl;
-Vec2D temp(1, 1);
-cout << normalised.dot(temp) << endl;
-temp = Vec2D(1, 2);
-cout << normalised.dot(temp) << endl;
-temp = Vec2D(3, 4);
-cout << normalised.dot(temp) << endl;
+cout << normalised.dot(Vec2D(1, 1)) << endl;
+cout << normalised.dot(Vec2D(1, 2)) << endl;
+cout << normalised.dot(Vec2D(3,4)) << endl;
 
 //IVec& project(IVec& axis);
 cout << "Testing project() by projecting (3, 4) on x and y axes" << endl;
@@ -41,18 +36,37 @@ Vec2D xaxis(1, 0);
 Vec2D yaxis(0, 1);
 
 // Assignment is causing trouble once it reaches the copy constructor
-pi->project(xaxis);
+// Vec2D temp = pi->project(xaxis);
 //cout << temp << endl;
-//cout << pi->project(xaxis) << endl;
+// cout << pi->project(xaxis);
 //cout << pi->project(yaxis) << endl;
 
-//IVec& operator*(IVec& v1);
+// const IVec& operator*(const IVec& v1);
+cout << "Testing *, +  and - operators with (1, 1) and (2, 3)" << endl;
+cout << Vec2D(1, 1) * Vec2D(2, 3);
 //IVec& operator+(IVec& v1);
+cout << Vec2D(1, 1) + Vec2D(2, 3);
 //IVec& operator-(IVec& v1);
+cout << Vec2D(1, 1) - Vec2D(2, 3);
 		
+cout << "Testing *=, +=  and -= operators with (1, 1) and *pi" << endl;
+cout << "*pi:" << endl << *pi;
 //IVec& operator*=(IVec& v1);
+*pi *= Vec2D(1, 1);
+cout << "*pi:" << endl << *pi;
 //IVec& operator+=(IVec& v1);
+*pi += Vec2D(1, 1);
+cout << "*pi:" << endl << *pi;
 //IVec& operator-=(IVec& v1);	
+*pi -= Vec2D(1, 1);
+cout << "*pi:" << endl << *pi;
+
+*pi *= (*pi);
+cout << "*pi:" << endl << *pi;
+*pi += (*pi);
+cout << "*pi:" << endl << *pi;
+*pi -= (*pi);
+cout << "*pi:" << endl << *pi;
 
 return 0;
 }

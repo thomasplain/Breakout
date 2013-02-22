@@ -8,7 +8,7 @@ class Vec2D : public IVec {
 		float x;
 		float y;
 	public:
-		Vec2D(float i = 0, float j = 0) : x(i), y(j){}
+		Vec2D(const float i = 0, const float j = 0) : x(i), y(j){}
 		Vec2D(const IVec& v){
 			x = v.get_x();
 			y = v.get_y();
@@ -20,19 +20,19 @@ class Vec2D : public IVec {
 		float get_y() const;
 		void set_y(float f);
 
-		float magnitude();
-		IVec& normalise();
-		IVec& normal();
-		float dot(IVec& v);
-		IVec& project(IVec& axis);
+		float magnitude() const;
+		const IVec& normalise() const;
+		const IVec& normal() const;
+		float dot(const IVec& v) const;
+		const IVec& project(IVec& axis) const;
 
-		IVec& operator*(IVec& v1);
-		IVec& operator+(IVec& v1);
-		IVec& operator-(IVec& v1);
+		const IVec& operator*(const IVec& v1);
+		const IVec& operator+(const IVec& v1);
+		const IVec& operator-(const IVec& v1);
 		
-		IVec& operator*=(IVec& v1);
-		IVec& operator+=(IVec& v1);
-		IVec& operator-=(IVec& v1);	
+		const IVec& operator*=(const IVec& v1);
+		const IVec& operator+=(const IVec& v1);
+		const IVec& operator-=(const IVec& v1);	
 };
 
 #endif //VEC2D_H
