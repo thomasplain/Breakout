@@ -26,7 +26,16 @@ class IVec {
 		virtual const IVec& operator+=(const IVec& v1) = 0;
 		virtual const IVec& operator-=(const IVec& v1) = 0;
 		
+		virtual const bool operator==(const IVec& v1) = 0;
+		virtual const bool operator!=(const IVec& v1) = 0;
+		virtual const bool operator<(const IVec& v1) = 0;
+		virtual const bool operator<=(const IVec& v1) = 0;
+		virtual const bool operator>(const IVec& v1) = 0;
+		virtual const bool operator>=(const IVec& v1) = 0;
+		
 		friend std::ostream& operator<<(std::ostream& o, const IVec& v);
 
 };
+
+int find_quadrant(const IVec* v);
 #endif

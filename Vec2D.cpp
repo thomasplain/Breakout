@@ -82,3 +82,32 @@ const IVec& Vec2D::operator-=(const IVec& v1){
 	*this = *this - v1;
 	return *this;
 }
+
+const bool Vec2D::operator==(const IVec& v1){
+	if (x == v1.get_x() && y == v1.get_y()) return true;
+	return false;
+}
+
+const bool Vec2D::operator!=(const IVec& v1){
+	return !(*this == v1);
+}
+
+const bool Vec2D::operator<(const IVec& v1){
+	if (find_quadrant(this) < find_quadrant(&v1)) return true;
+	if (magnitude() < v1.magnitude()) return true;
+	return false;
+}
+
+const bool Vec2D::operator<=(const IVec& v1){
+	return !(*this > v1);
+}
+
+const bool Vec2D::operator>(const IVec& v1){
+	if (find_quadrant(this) > find_quadrant(&v1)) return true;
+	if (magnitude() > v1.magnitude()) return true;
+	return false;
+}
+
+const bool Vec2D::operator>=(const IVec& v1){
+	return !(*this < v1);
+}

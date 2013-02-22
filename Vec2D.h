@@ -34,6 +34,13 @@ class Vec2D : public IVec {
 		const IVec& operator*=(const IVec& v1);
 		const IVec& operator+=(const IVec& v1);
 		const IVec& operator-=(const IVec& v1);	
+
+		virtual const bool operator==(const IVec& v1);
+		virtual const bool operator!=(const IVec& v1);
+		virtual const bool operator<(const IVec& v1);
+		virtual const bool operator<=(const IVec& v1);
+		virtual const bool operator>(const IVec& v1);
+		virtual const bool operator>=(const IVec& v1);
 };
 
 #endif //VEC2D_H
