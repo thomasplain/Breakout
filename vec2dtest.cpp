@@ -36,10 +36,8 @@ Vec2D xaxis(1, 0);
 Vec2D yaxis(0, 1);
 
 // Assignment is causing trouble once it reaches the copy constructor
-// Vec2D temp = pi->project(xaxis);
-//cout << temp << endl;
-// cout << pi->project(xaxis);
-//cout << pi->project(yaxis) << endl;
+cout << xaxis.normalise() * pi->project(xaxis);
+cout << yaxis.normalise() * pi->project(yaxis);
 
 // const IVec& operator*(const IVec& v1);
 cout << "Testing *, +  and - operators with (1, 1) and (2, 3)" << endl;

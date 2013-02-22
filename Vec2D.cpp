@@ -40,19 +40,18 @@ float Vec2D::dot(const IVec& v) const{
 	return x * v.get_x() + y * v.get_y();
 }
 
-const IVec& Vec2D::project(IVec& axis) const{
-	float dotp = dot(axis);
-	float weight = axis.magnitude();
-	Vec2D direction = axis.normalise();
-	float projx = direction.get_x() * dotp / weight;
-	float projy = direction.get_y() * dotp / weight;
-	Vec2D temp(projx, projy);
-	Vec2D &tr = temp;
-	return tr;
+float Vec2D::project(IVec& axis) const{
+	return dot(axis) / axis.magnitude();
 }
 
 const IVec& Vec2D::operator*(const IVec& v1){
 	Vec2D temp(x * v1.get_x(), y * v1.get_y());
+	Vec2D& tr = temp;
+	return tr;
+}
+
+const IVec& Vec2D::operator*(const float f) const{
+	Vec2D temp(x * f, y * f);
 	Vec2D& tr = temp;
 	return tr;
 }
@@ -70,31 +69,16 @@ const IVec& Vec2D::operator-(const IVec& v1){
 }
 
 const IVec& Vec2D::operator*=(const IVec& v1){
-//	Vec2D temp;
-//	if (this == &v1) temp = Vec2D(x*x, y*y);
-//	else temp = Vec2D(x * v1.get_x(), y * v1.get_y());
-//	Vec2D& tr = temp;
-//	return tr;
 	*this = *this * v1;
 	return *this;
 }
 
 const IVec& Vec2D::operator+=(const IVec& v1){
-//	Vec2D temp;
-//	if (this == &v1) temp = Vec2D(2 * x, 2 * y);
-//	else temp = *this + v1;
-//	Vec2D& tr = temp;
-//	return tr;
 	*this = *this + v1;
 	return *this;
 }
 
 const IVec& Vec2D::operator-=(const IVec& v1){
-//	Vec2D temp;
-//	if (this == &v1) temp = Vec2D(0, 0);
-//	else temp = *this - v1;
-//	Vec2D& tr = temp;
-//	return tr;
 	*this = *this - v1;
 	return *this;
 }

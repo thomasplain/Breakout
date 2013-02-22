@@ -15,9 +15,10 @@ class IVec {
 		virtual const IVec& normalise() const = 0;
 		virtual const IVec& normal() const = 0;
 		virtual float dot(const IVec& v) const = 0;
-		virtual const IVec& project(IVec& axis) const = 0;
+		virtual float project(IVec& axis) const = 0;
 
 		virtual const IVec& operator*(const IVec& v1) = 0;
+		virtual const IVec& operator*(const float f) const = 0;
 		virtual const IVec& operator+(const IVec& v1) = 0;
 		virtual const IVec& operator-(const IVec& v1) = 0;
 		

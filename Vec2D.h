@@ -24,9 +24,10 @@ class Vec2D : public IVec {
 		const IVec& normalise() const;
 		const IVec& normal() const;
 		float dot(const IVec& v) const;
-		const IVec& project(IVec& axis) const;
+		float project(IVec& axis) const;
 
 		const IVec& operator*(const IVec& v1);
+		const IVec& operator*(const float f) const;
 		const IVec& operator+(const IVec& v1);
 		const IVec& operator-(const IVec& v1);
 		
