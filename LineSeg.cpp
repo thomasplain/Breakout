@@ -1,9 +1,28 @@
 #include "ILine.h"
 #include "IVec.h"
+#include "LineSeg.h"
 #include "VecFactory.h"
 
-bool overlap(ILine* l){
-	if ((l->get_start() - l->get_end()).normalise() != (*end - *start)
+bool LineSeg::overlap(ILine* l){
+	if (!sameLine(l)) return false;
+	if (end > l->get_start()) return true;
+	if (start < l->get_end()) return true;
+	return false;
 }
 
-float shuntdist(ILine* l);
+IVec* LineSeg::shuntdist(ILine* l, VecFactory* vf){
+	if (!overlap(l)) return false;
+	if (*start < *(l->get_end())) return vf->createVec(&(*(l->get_end()) - *start));
+	return vf->createVec(&(*(l->get_start()) - *end));
+}
+
+bool LineSeg::sameLine(ILine* l){
+	IVec* thisgradient = &((*end - *start).normalise());
+	IVec* lgradient = &((*(l->get_end()) - *(l->get_start())).normalise()); 
+	// If lines don't have same gradient, they cannot be equal
+	if (thisgradient != lgradient) return false;
+	// Lines are potentially colinear, check
+	if (thisgradient != (*(l->get_start()) - *start).normalise() 
+		&& thisgradient != (*start - *(l->get_start())).normalise()) return false;
+	return true;
+}

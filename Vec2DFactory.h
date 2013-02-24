@@ -6,6 +6,6 @@
 class Vec2DFactory : public VecFactory{
 	public:
 		IVec* createVec(float ff, float gg);
-		IVec* createVec(IVec* v);
+		IVec* createVec(const IVec* v);
 };
 #endif //VEC2DFACTORY_H

@@ -23,49 +23,48 @@ float Vec2D::magnitude() const{
 }
 
 // Returns unit vector pointing in same direction
-const IVec& Vec2D::normalise() const{
-	Vec2D temp(x/magnitude(), y/magnitude());
-	Vec2D& tr = temp;
-	return tr;
+const IVec* Vec2D::normalise() const{
+	return new Vec2D(x/magnitude(), y/magnitude());
 }
 
 // Returns vector rotated by 90 degrees
-const IVec& Vec2D::normal() const{
-	Vec2D temp(-y, x);
-	Vec2D& tr = temp;
-	return tr;
+const IVec* Vec2D::normal() const{
+	return new Vec2D(-y, x);
 }
 
-float Vec2D::dot(const IVec& v) const{
-	return x * v.get_x() + y * v.get_y();
+float Vec2D::dot(const IVec* v) const{
+	return x * v->get_x() + y * v->get_y();
 }
 
-float Vec2D::project(IVec& axis) const{
-	return dot(axis) / axis.magnitude();
+IVec* Vec2D::project(IVec* axis) const{
+	float dotp = dot(axis); float weight = axis->magnitude();
+//	return dot(axis) / axis->magnitude();
+	Vec2D direction(*(axis->normalise()));
+	return new Vec2D(direction * (dotp / weight));
 }
 
 const IVec& Vec2D::operator*(const IVec& v1){
-	Vec2D temp(x * v1.get_x(), y * v1.get_y());
-	Vec2D& tr = temp;
-	return tr;
+return	Vec2D(x * v1.get_x(), y * v1.get_y());
+//	Vec2D& tr = temp;
+//	return tr;
 }
 
 const IVec& Vec2D::operator*(const float f) const{
-	Vec2D temp(x * f, y * f);
-	Vec2D& tr = temp;
-	return tr;
+return Vec2D(x * f, y * f);
+//	Vec2D& tr = temp;
+//	return tr;
 }
 
 const IVec& Vec2D::operator+(const IVec& v1){
-	Vec2D temp(x + v1.get_x(), y + v1.get_y());
-	Vec2D& tr = temp;
-	return tr;
+return	Vec2D(x + v1.get_x(), y + v1.get_y());
+//	Vec2D& tr = temp;
+//	return tr;
 }
 
 const IVec& Vec2D::operator-(const IVec& v1){
-	Vec2D temp(x - v1.get_x(), y - v1.get_y());
-	Vec2D& tr = temp;
-	return tr;
+return	Vec2D(x - v1.get_x(), y - v1.get_y());
+//	Vec2D& tr = temp;
+//	return tr;
 }
 
 const IVec& Vec2D::operator*=(const IVec& v1){
@@ -93,8 +92,10 @@ const bool Vec2D::operator!=(const IVec& v1){
 }
 
 const bool Vec2D::operator<(const IVec& v1){
-	if (find_quadrant(this) < find_quadrant(&v1)) return true;
-	if (magnitude() < v1.magnitude()) return true;
+//	if (find_quadrant(this) < find_quadrant(&v1)) return true;
+//	if (magnitude() < v1.magnitude()) return true;
+	if (y < v1.get_y()) return true;
+	else if (x < v1.get_x()) return true;
 	return false;
 }
 
@@ -103,8 +104,10 @@ const bool Vec2D::operator<=(const IVec& v1){
 }
 
 const bool Vec2D::operator>(const IVec& v1){
-	if (find_quadrant(this) > find_quadrant(&v1)) return true;
-	if (magnitude() > v1.magnitude()) return true;
+//	if (find_quadrant(this) > find_quadrant(&v1)) return true;
+//	if (magnitude() > v1.magnitude()) return true;
+	if (y > v1.get_y()) return true;
+	else if (x > v1.get_x()) return true;
 	return false;
 }
 

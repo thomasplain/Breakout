@@ -2,15 +2,17 @@
 #define ILINE_H
 
 #include "IVec.h"
+#include "VecFactory.h"
 
 class ILine{
 	public:
-		IVec* get_start();
-		IVec* get_end();
+		virtual IVec* get_start() const = 0;
+		virtual IVec* get_end() const = 0;
 		
 		// Tests whether line overlaps with another
-		bool overlap(ILine* l);
+		virtual bool overlap(ILine* l) = 0;
 		// Returns distance line must be shunted to remove overlap
-		float shuntdist(ILine* l);
-}
+		virtual IVec* shuntdist(ILine* l, VecFactory* vf) = 0;
+};
+
 #endif // ILINE_H

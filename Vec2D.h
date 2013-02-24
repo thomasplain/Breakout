@@ -10,8 +10,8 @@ class Vec2D : public IVec {
 	public:
 		Vec2D(const float i = 0, const float j = 0) : x(i), y(j){}
 		Vec2D(const IVec& v){
-			x = v.get_x();
 			y = v.get_y();
+			x = v.get_x();
 		}
 
 		float get_x() const;
@@ -20,20 +20,20 @@ class Vec2D : public IVec {
 		float get_y() const;
 		void set_y(float f);
 
-		float magnitude() const;
-		const IVec& normalise() const;
-		const IVec& normal() const;
-		float dot(const IVec& v) const;
-		float project(IVec& axis) const;
+		virtual float magnitude() const;
+		virtual const IVec* normalise() const;
+		virtual const IVec* normal() const;
+		virtual float dot(const IVec* v) const;
+		virtual IVec* project(IVec* axis) const;
 
-		const IVec& operator*(const IVec& v1);
-		const IVec& operator*(const float f) const;
-		const IVec& operator+(const IVec& v1);
-		const IVec& operator-(const IVec& v1);
+		virtual const IVec& operator*(const IVec& v1);
+		virtual const IVec& operator*(const float f) const;
+		virtual const IVec& operator+(const IVec& v1);
+		virtual const IVec& operator-(const IVec& v1);
 		
-		const IVec& operator*=(const IVec& v1);
-		const IVec& operator+=(const IVec& v1);
-		const IVec& operator-=(const IVec& v1);	
+		virtual const IVec& operator*=(const IVec& v1);
+		virtual const IVec& operator+=(const IVec& v1);
+		virtual const IVec& operator-=(const IVec& v1);	
 
 		virtual const bool operator==(const IVec& v1);
 		virtual const bool operator!=(const IVec& v1);
