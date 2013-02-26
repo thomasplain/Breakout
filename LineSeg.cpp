@@ -16,13 +16,15 @@ IVec* LineSeg::shuntdist(ILine* l, VecFactory* vf){
 	return vf->createVec(&(*(l->get_start()) - *end));
 }
 
+// Include factory pointer in class? Seem to use it a lot.
 bool LineSeg::sameLine(ILine* l){
-	IVec* thisgradient = &((*end - *start).normalise());
-	IVec* lgradient = &((*(l->get_end()) - *(l->get_start())).normalise()); 
+	IVec* thisgradient = new Vec2D((*end - *start).normalise());
+	IVec* lgradient = (*(l->get_end()) - *(l->get_start())).normalise(); 
 	// If lines don't have same gradient, they cannot be equal
 	if (thisgradient != lgradient) return false;
 	// Lines are potentially colinear, check
 	if (thisgradient != (*(l->get_start()) - *start).normalise() 
 		&& thisgradient != (*start - *(l->get_start())).normalise()) return false;
+	delete thisgradient;
 	return true;
 }
