@@ -1,15 +1,15 @@
 #ifndef VEC2D_H
 #define VEC2D_H
 
-#include "IVec.h"
+#include <iostream>
 
-class Vec2D : public IVec {
+class Vec2D{
 	protected:
 		float x;
 		float y;
 	public:
 		Vec2D(const float i = 0, const float j = 0) : x(i), y(j){}
-		Vec2D(const IVec& v){
+		Vec2D(const Vec2D& v){
 			y = v.get_y();
 			x = v.get_x();
 		}
@@ -20,27 +20,30 @@ class Vec2D : public IVec {
 		float get_y() const;
 		void set_y(float f);
 
-		virtual float magnitude() const;
-		virtual const IVec* normalise() const;
-		virtual const IVec* normal() const;
-		virtual float dot(const IVec* v) const;
-		virtual IVec* project(IVec* axis) const;
+		float magnitude() const;
+		const Vec2D normalise() const;
+		const Vec2D normal() const;
+		float dot(const Vec2D v) const;
+		Vec2D project(Vec2D axis) const;
 
-		virtual const IVec& operator*(const IVec& v1);
-		virtual const IVec& operator*(const float f) const;
-		virtual const IVec& operator+(const IVec& v1);
-		virtual const IVec& operator-(const IVec& v1);
+		const Vec2D operator*(const Vec2D& v1);
+		const Vec2D operator*(float f) const;
+		const Vec2D operator+(const Vec2D& v1);
+		const Vec2D operator-(const Vec2D& v1);
 		
-		virtual const IVec& operator*=(const IVec& v1);
-		virtual const IVec& operator+=(const IVec& v1);
-		virtual const IVec& operator-=(const IVec& v1);	
+		const Vec2D operator*=(const Vec2D& v1);
+		const Vec2D operator*=(const float& f);
+		const Vec2D operator+=(const Vec2D& v1);
+		const Vec2D operator-=(const Vec2D& v1);	
 
-		virtual const bool operator==(const IVec& v1);
-		virtual const bool operator!=(const IVec& v1);
-		virtual const bool operator<(const IVec& v1);
-		virtual const bool operator<=(const IVec& v1);
-		virtual const bool operator>(const IVec& v1);
-		virtual const bool operator>=(const IVec& v1);
+		const bool operator==(const Vec2D& v1);
+		const bool operator!=(const Vec2D& v1);
+		const bool operator<(const Vec2D& v1);
+		const bool operator<=(const Vec2D& v1);
+		const bool operator>(const Vec2D& v1);
+		const bool operator>=(const Vec2D& v1);
+
+		friend std::ostream& operator<<(std::ostream& o, const Vec2D& v);
 };
 
 #endif //VEC2D_H
