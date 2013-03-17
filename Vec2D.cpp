@@ -43,6 +43,13 @@ Vec2D Vec2D::project(Vec2D axis) const{
 	return direction;
 }
 
+void Vec2D::rotate(float angle){
+	float xtemp = x * cos(angle) + y * sin(angle);
+	float ytemp = -x * sin(angle) + y * cos(angle);
+	x = xtemp;
+	y = ytemp;
+}
+
 const Vec2D Vec2D::operator*(const Vec2D& v1){
 	return	Vec2D(x * v1.get_x(), y * v1.get_y());
 }

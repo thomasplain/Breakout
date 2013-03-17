@@ -25,6 +25,7 @@ class Vec2D{
 		const Vec2D normal() const;
 		float dot(const Vec2D v) const;
 		Vec2D project(Vec2D axis) const;
+		void rotate(float angle);
 
 		const Vec2D operator*(const Vec2D& v1);
 		const Vec2D operator*(float f) const;

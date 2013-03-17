@@ -2,6 +2,7 @@
 #define LINESEG_H
 
 #include "Vec2D.h"
+#include <iostream>
 
 class LineSeg{
 	protected:
@@ -28,5 +29,7 @@ class LineSeg{
 		bool overlap(LineSeg l);
 		Vec2D shuntdist(LineSeg l);
 		bool sameLine(LineSeg l);
+
+		friend std::ostream& operator<<(std::ostream& o, const LineSeg& l);
 };
 #endif

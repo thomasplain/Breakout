@@ -3,8 +3,8 @@
 
 bool LineSeg::overlap(LineSeg l){
 	if (!sameLine(l)) return false;
-	if (end > l.start) return true;
-	if (start < l.end) return true;
+	if (end > l.start && start < l.start) return true;
+	if (start < l.end && end > l.end) return true;
 	return false;
 }
 
@@ -24,4 +24,9 @@ bool LineSeg::sameLine(LineSeg l){
 	if (thisgradient != (l.start - start).normalise()
 		&& thisgradient != (start - l.start).normalise()) return false;
 	return true;
+}
+std::ostream& operator<<(std::ostream& o, const LineSeg& l){
+	o << "Start: " << std::endl << l.start << std::endl;
+	o << "End: " << std::endl << l.end;
+	return o;
 }
