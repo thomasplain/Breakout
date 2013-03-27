@@ -27,10 +27,10 @@ class Vec2D{
 		Vec2D project(Vec2D axis) const;
 		void rotate(float angle);
 
-		const Vec2D operator*(const Vec2D& v1);
+		const Vec2D operator*(const Vec2D& v1) const;
 		const Vec2D operator*(float f) const;
-		const Vec2D operator+(const Vec2D& v1);
-		const Vec2D operator-(const Vec2D& v1);
+		const Vec2D operator+(const Vec2D& v1) const;
+		const Vec2D operator-(const Vec2D& v1) const;
 		
 		const Vec2D operator*=(const Vec2D& v1);
 		const Vec2D operator*=(const float& f);

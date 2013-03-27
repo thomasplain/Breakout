@@ -13,8 +13,9 @@ class Square : public Shape{
 		Square(Vec2D c, float h = 1, float w = 1, float a = 0);
 		~Square() {}
 
-		virtual Vec2D get_centre() { return centre; }
-//		virtual bool isVertex(const Vec2D& v);
+		virtual Vec2D get_centre() const { return centre; }
+		virtual Vec2D get_corner(int i) const { return corners[i % 4]; }
+		virtual bool isVertex(const Vec2D& v);
 		virtual void rotate(float pangle){
 			angle += pangle;
 		}

@@ -1,18 +1,24 @@
 #include "Square.h"
 Square::Square(Vec2D c, float h, float w, float a) : centre(c), height(h), width(w), angle(a) {
 	if (angle >= 360) angle -= 360;
-	else if (angle < 0) angle += 360;
+	else if (angle <= -360) angle += 360;
 
-	float left = centre.get_x() - width / 2;
-	float right = centre.get_x() + width / 2;
-	float bottom = centre.get_y() - height / 2;
-	float top = centre.get_y() + height / 2;
+	Vec2D leftVec = Vec2D(-width/2, 0);
+	Vec2D rightVec = Vec2D(width/2, 0);
+	Vec2D topVec = Vec2D(0, height/2);
+	Vec2D bottomVec = Vec2D(0, -height/2);
 
-	// Define corner vertices	
-	corners[0] = Vec2D(left, top);
-	corners[1] = Vec2D(right, top);
-	corners[2] = Vec2D(right, bottom);
-	corners[3] = Vec2D(left, bottom);
+	if (angle != 0){
+		leftVec.rotate(angle);
+		rightVec.rotate(angle);
+		topVec.rotate(angle);
+		bottomVec.rotate(angle);
+	}
+	
+	corners[0] = c + leftVec + topVec;
+	corners[1] = c + leftVec + bottomVec;
+	corners[2] = c + rightVec + bottomVec;
+	corners[3] = c + rightVec + topVec;
 }
 
 LineSeg Square::project(const Vec2D& axis){
@@ -63,4 +69,11 @@ Vec2D Square::get_nearest(Vec2D point){
 		if (np.get_y() > height / 2) np.set_y(height/2);
 		else if (np.get_y() < -height / 2) np.set_y(-height/2);
 	return np + centre;
+}
+
+bool Square::isVertex(const Vec2D& point){
+	if ((point.get_x() == centre.get_x() - width/2 || point.get_x() == centre.get_x() + width/2)
+		&& (point.get_y() == centre.get_y() - height/2 || point.get_y() == centre.get_y() + height/2))
+		return true;
+	return false;
 }

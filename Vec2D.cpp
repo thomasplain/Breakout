@@ -50,7 +50,7 @@ void Vec2D::rotate(float angle){
 	y = ytemp;
 }
 
-const Vec2D Vec2D::operator*(const Vec2D& v1){
+const Vec2D Vec2D::operator*(const Vec2D& v1) const{
 	return	Vec2D(x * v1.get_x(), y * v1.get_y());
 }
 
@@ -58,11 +58,11 @@ const Vec2D Vec2D::operator*(float f) const{
 	return Vec2D(x * f, y * f);
 }
 
-const Vec2D Vec2D::operator+(const Vec2D& v1){
+const Vec2D Vec2D::operator+(const Vec2D& v1) const{
 	return	Vec2D(x + v1.get_x(), y + v1.get_y());
 }
 
-const Vec2D Vec2D::operator-(const Vec2D& v1){
+const Vec2D Vec2D::operator-(const Vec2D& v1) const{
 	return	Vec2D(x - v1.get_x(), y - v1.get_y());
 }
 

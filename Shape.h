@@ -6,7 +6,7 @@
 
 class Shape{
 	public:
-		virtual Vec2D get_centre() = 0;
+		virtual Vec2D get_centre() const = 0;
 		virtual LineSeg project(const Vec2D& axis) = 0;
 		virtual void move(Vec2D& v) = 0;
 		virtual void rotate(float angle) = 0;
