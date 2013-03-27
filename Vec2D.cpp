@@ -96,7 +96,7 @@ const bool Vec2D::operator!=(const Vec2D& v1){
 
 const bool Vec2D::operator<(const Vec2D& v1){
 	if (y < v1.get_y()) return true;
-	else if (x < v1.get_x()) return true;
+	if (y == v1.get_y() && x < v1.get_x()) return true;
 	return false;
 }
 
@@ -106,7 +106,7 @@ const bool Vec2D::operator<=(const Vec2D& v1){
 
 const bool Vec2D::operator>(const Vec2D& v1){
 	if (y > v1.get_y()) return true;
-	else if (x > v1.get_x()) return true;
+	if (y == v1.get_y() && x > v1.get_x()) return true;
 	return false;
 }
 
