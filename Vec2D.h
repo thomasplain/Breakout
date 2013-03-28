@@ -39,10 +39,10 @@ class Vec2D{
 
 		const bool operator==(const Vec2D& v1);
 		const bool operator!=(const Vec2D& v1);
-		const bool operator<(const Vec2D& v1);
-		const bool operator<=(const Vec2D& v1);
-		const bool operator>(const Vec2D& v1);
-		const bool operator>=(const Vec2D& v1);
+		const bool operator<(const Vec2D& v1) const;
+		const bool operator<=(const Vec2D& v1) const;
+		const bool operator>(const Vec2D& v1) const;
+		const bool operator>=(const Vec2D& v1) const;
 
 		friend std::ostream& operator<<(std::ostream& o, const Vec2D& v);
 };

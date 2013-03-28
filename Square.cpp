@@ -1,4 +1,5 @@
 #include "Square.h"
+#include <cmath>
 Square::Square(Vec2D c, float h, float w, float a) : centre(c), height(h), width(w), angle(a) {
 	if (angle >= 360) angle -= 360;
 	else if (angle <= -360) angle += 360;
@@ -62,13 +63,25 @@ bool Square::collision_check(Shape& s){
 
 Vec2D Square::get_nearest(Vec2D point){
 	// Find nearest point to centre of other shape
-	// Define vector between two centres and then bound by square width and height
 	Vec2D np = (point - centre);
+	// If point is outside shape
+	if (fabs(np.get_x()) >= width / 2 || fabs(np.get_y()) >= height / 2){
+	// Define vector between two centres and then bound by square width and height
 		if (np.get_x() > width / 2) np.set_x(width/2);
 		else if (np.get_x() < -width / 2) np.set_x(-width/2);
 		if (np.get_y() > height / 2) np.set_y(height/2);
 		else if (np.get_y() < -height / 2) np.set_y(-height/2);
+	} else {
+		float costheta = np.normalise().dot(Vec2D(1, 0));
+		if (costheta > 1 / sqrt(2)) np.set_x(width /2);
+		else if (costheta < -1 / sqrt(2)) np.set_x(-width / 2);
+		else{
+			if (np.get_y() > 0) np.set_y(height / 2);
+			else np.set_y(-height / 2);
+		}
+	}
 	return np + centre;
+	
 }
 
 bool Square::isVertex(const Vec2D& point){

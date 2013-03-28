@@ -26,10 +26,13 @@ class LineSeg{
 			return end;
 		}
 
-		bool overlap(LineSeg l);
+		bool overlap(const LineSeg& l) const;
 		Vec2D shuntdist(LineSeg l);
-		bool sameLine(LineSeg l);
+		bool sameLine(const LineSeg& l) const;
+		Vec2D nudgeVec(const LineSeg& l) const;
 
 		friend std::ostream& operator<<(std::ostream& o, const LineSeg& l);
 };
+
+bool withinBounds(const Vec2D& v1, const Vec2D& v2, const float& param);
 #endif

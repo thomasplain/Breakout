@@ -94,23 +94,23 @@ const bool Vec2D::operator!=(const Vec2D& v1){
 	return !(*this == v1);
 }
 
-const bool Vec2D::operator<(const Vec2D& v1){
+const bool Vec2D::operator<(const Vec2D& v1) const{
 	if (y < v1.get_y()) return true;
 	if (y == v1.get_y() && x < v1.get_x()) return true;
 	return false;
 }
 
-const bool Vec2D::operator<=(const Vec2D& v1){
+const bool Vec2D::operator<=(const Vec2D& v1) const{
 	return !(*this > v1);
 }
 
-const bool Vec2D::operator>(const Vec2D& v1){
+const bool Vec2D::operator>(const Vec2D& v1) const{
 	if (y > v1.get_y()) return true;
 	if (y == v1.get_y() && x > v1.get_x()) return true;
 	return false;
 }
 
-const bool Vec2D::operator>=(const Vec2D& v1){
+const bool Vec2D::operator>=(const Vec2D& v1) const{
 	return !(*this < v1);
 }
 

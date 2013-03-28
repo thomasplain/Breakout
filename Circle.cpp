@@ -12,10 +12,10 @@ bool Circle::collision_check(Shape& s){
 	Vec2D xaxis(1, 0), yaxis(0, 1);
 	if (!s.project(xaxis).overlap(project(xaxis))) return false;
 	if (!s.project(yaxis).overlap(project(yaxis))) return false;
-//	if (s.isVertex(s.get_nearest(centre))){
-//		Vec2D newAxis = centre - s.get_nearest(centre);
-//		if (!s.project(newAxis).overlap(project(newAxis))) return false;
-//	}
+	if (s.isVertex(s.get_nearest(centre))){
+		Vec2D newAxis = centre - s.get_nearest(centre);
+		if (!s.project(newAxis).overlap(project(newAxis))) return false;
+	}
 	return true;
 }
 
