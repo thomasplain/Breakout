@@ -31,7 +31,8 @@ bool LineSeg::sameLine(const LineSeg& l) const{
 
 Vec2D LineSeg::nudgeVec(const LineSeg& l) const{
 	if (!overlap(l)) return Vec2D(0, 0);
-	return ((start - l.end).magnitude() < (end - l.start).magnitude())? l.end - start : l.start - end;
+	float m1 = (start - l.end).magnitude(), m2 = (end - l.start).magnitude();
+	return (m1 < m2)? (l.end - start).normalise() * (m1 + 1.0f) : (l.start - end).normalise() * (m2 + 1.0f);
 }
 
 std::ostream& operator<<(std::ostream& o, const LineSeg& l){
